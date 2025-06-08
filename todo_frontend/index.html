@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To-Do List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- Background for login screen -->
+  <div class="background"></div>
+
+  <!-- Login/Register -->
+  <section id="auth-section" class="centered-box">
+    <h1 class="heading">To-Do List</h1>
+    <p class="subheading">Organize your life, one task at a time.</p>
+    <form id="auth-form">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <div class="button-group">
+        <button id="login-btn" type="submit">Login</button>
+        <button id="register-btn" type="button">Register</button>
+      </div>
+    </form>
+    <p id="auth-message" class="message"></p>
+  </section>
+
+  <!-- Dashboard after login -->
+  <section id="app-section" style="display: none;">
+    <header class="app-header">
+      <h2>Your To-Do Lists</h2>
+      <button id="logout-btn">Logout</button>
+    </header>
+    <div class="dashboard">
+      <aside class="sidebar">
+        <input type="text" id="search-bar" placeholder="Search Lists..." autocomplete="off" /> 
+        <ul id="lists-container"></ul>
+        <form id="new-list-form">
+          <input type="text" id="new-list-name" placeholder="New List Name" required autocomplete="off" />
+          <input type="text" id="new-list-desc" placeholder="Description" autocomplete="off" />
+          <button type="submit">Add List</button>
+        </form>
+      </aside>
+      <main class="items-area">
+        <!-- <input type="text" id="item-search" placeholder="Search items..." class="search-bar"> -->
+        <h3 id="selected-list-title">Select a list</h3>
+        <input type="text" id="item-search" placeholder="Search items..." class="search-bar" autocomplete="off">
+        <ul id="items-container"></ul>
+        <form id="new-item-form" style="display: none;">
+          <input type="text" id="new-item-content" placeholder="New Item" required autocomplete="off" />
+          <button type="submit">Add Item</button>
+        </form>
+      </main>
+    </div>
+  </section>
+
+  <script src="index.js"></script>
+</body>
+</html>

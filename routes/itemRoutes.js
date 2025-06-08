@@ -62,7 +62,8 @@ router.delete('/:id', authenticateToken, async (req, res) => {
       return res.status(403).json({ error: 'Not authorized to delete this item' });
     }
 
-    await item.remove();
+    await item.deleteOne();
+
     res.json({ message: 'Item deleted' });
   } catch (error) {
     res.status(500).json({ error: 'Error deleting item' });

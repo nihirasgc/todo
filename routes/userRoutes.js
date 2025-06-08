@@ -13,9 +13,19 @@ router.post('/register', async (req, res) => {
     await newUser.save();
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+    // Handle duplicate username error (MongoDB error code 11000)
+    if (error.code === 11000) {
+      return res.status(400).json({ error: 'Username already exists' });
+    }
+
+    // Log other errors for debugging
+    console.error('Registration Error:', error);
+
+    // Generic fallback
     res.status(500).json({ error: 'Error registering user' });
   }
 });
+
 
 // Login user
 router.post('/login', async (req, res) => {

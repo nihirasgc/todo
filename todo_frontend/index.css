@@ -1,0 +1,420 @@
+/* Reset and layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Background image with blur overlay - only visible on login */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('./assets/background.jpeg') no-repeat center center/cover;
+  z-index: -1;
+  filter: brightness(0.8) blur(2px);
+  /*opacity: 0.25; /* or adjust as needed */
+}
+
+
+/* Centered translucent box for login/register */
+.centered-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+}
+
+/* Heading in Pacifico font */
+.heading {
+  font-family: 'Pacifico', cursive;
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #3b2f2f;
+}
+
+/* Subheading */
+.subheading {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Inputs and buttons */
+form input {
+  width: 100%;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+/* Button groups */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #fdb813;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #ff9900;
+}
+
+.message {
+  margin-top: 10px;
+  color: red;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* General Layout for logged-in app */
+#app-section {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+  position: relative;
+}
+
+/* App header with logout */
+.app-header {
+  flex-shrink: 0;
+  background: #fdb813;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 24px;
+  box-shadow: 0 2px 8px rgb(253 184 19 / 0.7);
+  position: relative;
+  z-index: 10;
+}
+
+#logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 6px 12px;      /* tighter padding */
+  font-size: 14px;        /* optional: slightly smaller text */
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(220, 20, 60, 0.4);
+  width: auto;            /* ensures it fits the content */
+  min-width: unset; 
+}
+
+#logout-btn:hover {
+  background-color: darkred;
+}
+
+/* Dashboard layout */
+.dashboard {
+  flex-grow: 1;
+  display: flex;
+  height: calc(100vh - 70px);
+  background: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  background: rgba(172, 141, 68, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 20px 25px;
+  border-radius: 0 0 0 20px;
+  box-shadow: inset 1px 0 8px rgba(253, 184, 19, 0.4);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+}
+
+#search-bar {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 1px solid #d99a00;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  outline-offset: 2px;
+  transition: box-shadow 0.3s ease;
+}
+
+#search-bar:focus {
+  box-shadow: 0 0 6px 2px #fdb813;
+  border-color: #fdb813;
+}
+
+#item-search {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 1px solid #d99a00;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  outline-offset: 2px;
+  transition: box-shadow 0.3s ease;
+}
+
+#item-search:focus {
+  box-shadow: 0 0 6px 2px #fdb813;
+  border-color: #fdb813;
+}
+
+
+#lists-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  list-style: none;
+  padding-right: 5px;
+}
+
+#lists-container li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background: white;
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: #4a3c00;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 0 6px -3px #fdb813;
+  user-select: none;
+}
+
+/* Highlight selected list */
+#lists-container li.selected,
+#lists-container li:hover {
+  background-color: #fdb813;
+  color: white;
+  box-shadow: 0 0 12px 2px #ffac33;
+}
+
+/* Actions buttons inside lists */
+.actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 8px;
+  color: #7a5600;
+  transition: color 0.3s ease;
+}
+
+.actions button:hover {
+  color: #fff;
+  filter: drop-shadow(0 0 2px #fff);
+}
+
+/* New list form */
+#new-list-form {
+  margin-top: 15px;
+}
+
+#new-list-form input {
+  margin-bottom: 8px;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid #d99a00;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  color: #4a3c00;
+}
+
+#new-list-form button {
+  width: 100%;
+  background-color: #fdb813;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 0;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+#new-list-form button:hover {
+  background-color: #ff9900;
+}
+
+/* Items area */
+.items-area {
+  flex-grow: 1;
+  padding: 40px 50px;
+  background: rgba(212, 165, 55, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 0 20px 20px 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.items-area h3 {
+  font-family: 'Pacifico', cursive;
+  color: #252515;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+/* Items list */
+#items-container {
+  list-style: none;
+  overflow-y: auto;
+  flex-grow: 1;
+  margin-bottom: 25px;
+  padding-right: 10px;
+}
+
+#items-container li {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 14px;
+  font-size: 16px;
+  color: #3b2f2f;
+  box-shadow: 0 0 6px -3px #fdb813;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+#items-container li.completed {
+  text-decoration: line-through;
+  color: #888;
+  opacity: 0.7;
+}
+
+#items-container li:hover {
+  background-color: #fdb813;
+  color: white;
+  box-shadow: 0 0 12px 2px #ffac33;
+}
+
+/* Checkbox styling */
+.items-area li input[type="checkbox"] {
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #fdb813;
+}
+
+/* Item actions */
+.item-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.item-actions button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #7a5600;
+  transition: color 0.3s ease;
+}
+
+.item-actions button:hover {
+  color: white;
+  filter: drop-shadow(0 0 2px #fff);
+}
+
+/* New item form */
+#new-item-form {
+  display: flex;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+#new-item-form input {
+  flex-grow: 1;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1px solid #d99a00;
+  font-family: 'Roboto', sans-serif;
+  color: #4a3c00;
+}
+
+#new-item-form button {
+  background-color: #fdb813;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+#new-item-form button:hover {
+  background-color: #ff9900;
+}
+
+/* Scrollbar styling for sidebar and items */
+#lists-container::-webkit-scrollbar,
+#items-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+#lists-container::-webkit-scrollbar-thumb,
+#items-container::-webkit-scrollbar-thumb {
+  background-color: #fdb813;
+  border-radius: 10px;
+}
+
+#lists-container::-webkit-scrollbar-track,
+#items-container::-webkit-scrollbar-track {
+  background: transparent;
+}
