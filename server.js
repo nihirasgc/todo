@@ -20,10 +20,7 @@ app.use(cors());
 // MongoDB Atlas Connection
 const DB_URI = process.env.DB_URI;
 
-mongoose.connect(DB_URI, { 
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(DB_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
