@@ -71,6 +71,25 @@ document.addEventListener('DOMContentLoaded', async () => {
       authSection.style.display = 'none';
       appSection.style.display = 'block';
       await loadLists();
+
+      // Check for saved selected list ID
+      const savedListId = localStorage.getItem('selectedListId');
+      if (savedListId) {
+        selectedListId = savedListId;
+
+        // Fetch all lists to find the saved list's name
+        const res = await fetch(`${apiBase}/lists`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const lists = await res.json();
+
+        const selectedList = lists.find((list) => list._id === savedListId);
+        if (selectedList) {
+          selectedListTitle.textContent = selectedList.name;
+          newItemForm.style.display = 'block';
+          await loadItems(savedListId);
+        }
+      }
     } else {
       authSection.style.display = 'block';
     }
@@ -118,6 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     Cookies.remove('token');
     token = '';
     selectedListId = '';
+    localStorage.removeItem('selectedListId'); // Clear local storage
     listsContainer.innerHTML = '';
     itemsContainer.innerHTML = '';
     newItemForm.style.display = 'none';
@@ -148,6 +168,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         li.addEventListener('click', () => {
           selectedListId = list._id;
+          localStorage.setItem('selectedListId', selectedListId); // Save to local storage
           selectedListTitle.textContent = list.name;
           newItemForm.style.display = 'block';
           loadItems(list._id);
